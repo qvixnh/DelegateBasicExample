@@ -18,8 +18,12 @@ namespace DelegateBasicExample
 
             Console.WriteLine("Please enter your name: ");
             var name = Console.ReadLine();
-            multiLogDel(name);
+            LogText(multiLogDel, name);
             Console.ReadKey();
+        }
+        static void LogText(LogDel logDel, string text)
+        {
+            logDel(text);
         }
         
     }
@@ -29,10 +33,8 @@ namespace DelegateBasicExample
         {
             Console.WriteLine($"{DateTime.Now}: {text}");
         }
-        //wrties the user input to a text file
         public void LogTextToFile(string text)
         {
-            //logic code
             using (StreamWriter sw = new StreamWriter(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Log.txt"), true))
             {
                 sw.WriteLine($"{DateTime.Now}: {text}");
